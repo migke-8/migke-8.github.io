@@ -13,8 +13,8 @@
 </head>
 
 <body x-data="{
-    logoSize: 85,
-    selectedIndex: 0
+    selectedIndex: 0,
+    alreadySelected: false
   }">
   <header>
     <h1>Welcome!</h1>
@@ -26,12 +26,13 @@
     </ul>
   </header>
   <nav>
-    <button type="button" x-on:click="selectedIndex = 0" </button>
-      <button type="button" x-on:click="selectedIndex = 1"></button>
-      <button type="button" x-on:click="selectedIndex = 2"></button>
+    <button type="button" x-on:click="selectedIndex === 0?(alreadySelected = true):(selectedIndex = 0)" </button>
+      <button type="button" x-on:click="selectedIndex === 1?(alreadySelected = true):(selectedIndex = 1)"></button>
+      <button type="button" x-on:click="selectedIndex === 2?(alreadySelected = true):(selectedIndex = 2)"></button>
   </nav>
   <main>
-    <article x-show="selectedIndex === 0">
+    <article x-show="selectedIndex === 0" x-bind:class="alreadySelected&&'redundant'"
+      x-on:animationend="alreadySelected = false">
       <h2>Who i am</h2>
       <p>
         Hello, my name is Miguel and i am a amateur web/game developer
@@ -45,7 +46,8 @@
         loves to talk about.
       </p>
     </article>
-    <article x-show="selectedIndex === 1">
+    <article x-show="selectedIndex === 1" x-bind:class="alreadySelected&&'redundant'"
+      x-on:animationend="alreadySelected = false">
       <h2>History in coding</h2>
       <p>
         I code since my 13's and am 20 years old. I started in a <small>amazing</small>
@@ -56,7 +58,8 @@
         to have more knowledge about user interaction based I/O operations and coding in general.
       </p>
     </article>
-    <article id="tech-article" x-show="selectedIndex === 2">
+    <article id="tech-article" x-bind:class="alreadySelected&&'redundant'" x-show="selectedIndex === 2"
+      x-on:animationend="alreadySelected = false">
       <h2>What is my current tech stack?</h2>
       <p>
         Actually... that is a little bit funny to talk about, since i am pretty agnostic
@@ -68,31 +71,28 @@
         <section aria-labelledby="scala" class="tech-card">
           <h3 id="scala">Scala</h3>
           <span>
-            <img x-bind:width="logoSize"
-              src="https://images.seeklogo.com/logo-png/27/3/scala-logo-png_seeklogo-273882.png" alt="Scala logo">
+            <img src="https://images.seeklogo.com/logo-png/27/3/scala-logo-png_seeklogo-273882.png" alt="Scala logo">
           </span>
         </section>
 
         <section aria-labelledby="tapir" class="tech-card">
           <h3 id="tapir">Tapir</h3>
           <span>
-            <img x-bind:width="logoSize" src="assets/tapir-logo.png"
-              alt="Tapir scala library logo">
+            <img src="assets/tapir-logo.png" alt="Tapir scala library logo">
           </span>
         </section>
 
         <section aria-labelledby="scalike-jdbc" class="tech-card">
           <h3 id="scalike-jdbc">ScalikeJDBC</h3>
           <span>
-            <img x-bind:width="logoSize" src="https://scalikejdbc.org/images/logo.png"
-              alt="ScalikeJDBC scala library logo">
+            <img src="https://scalikejdbc.org/images/logo.png" alt="ScalikeJDBC scala library logo">
           </span>
         </section>
 
         <section aria-labelledby="sqlite" class="tech-card">
           <h3 id="sqlite">SQLite</h3>
           <span>
-            <img x-bind:width="logoSize"
+            <img width="logoSize"
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SQLite370.svg/2560px-SQLite370.svg.png"
               alt="SQLite logo">
           </span>
@@ -101,7 +101,7 @@
         <section aria-labelledby="alpine" class="tech-card">
           <h3 id="alpine">Alpine.js</h3>
           <span>
-            <img x-bind:width="logoSize"
+            <img
               src="https://sperovita.gallerycdn.vsassets.io/extensions/sperovita/alpinejs-syntax-highlight/1.0.1/1642647041367/Microsoft.VisualStudio.Services.Icons.Default"
               alt="Alpine.js logo">
           </span>
@@ -109,7 +109,7 @@
         <section aria-labelledby="neovim" class="tech-card">
           <h3 id="neovim">Neovim</h3>
           <span>
-            <img x-bind:width="logoSize"
+            <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Neovim-mark.svg/1680px-Neovim-mark.svg.png"
               alt="Neovim logo">
           </span>
