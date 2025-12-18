@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miguel Peixoto Portela Bispo's Portfolio</title>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="src/main.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="src/styles.css">
+</head>
+
+<body x-data="{
+    logoSize: 85,
+    selectedIndex: 0
+  }">
+  <header>
+    <h1>Welcome!</h1>
+    <ul>
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="Github logo">
+        <a href="https://github.com/migke-8" target="_blank">Github</a>
+      </li>
+    </ul>
+  </header>
+  <nav>
+    <button type="button" x-on:click="selectedIndex = 0" </button>
+      <button type="button" x-on:click="selectedIndex = 1"></button>
+      <button type="button" x-on:click="selectedIndex = 2"></button>
+  </nav>
+  <main>
+    <article x-show="selectedIndex === 0">
+      <h2>Who i am</h2>
+      <p>
+        Hello, my name is Miguel and i am a amateur web/game developer
+        that loves to create complex systems using
+        simple building blocks to leverage amazing performance
+        and good code quality.
+      </p>
+      <p>
+        I have a solid background in coding
+        and the good and old critical and creative thinking that everyone
+        loves to talk about.
+      </p>
+    </article>
+    <article x-show="selectedIndex === 1">
+      <h2>History in coding</h2>
+      <p>
+        I code since my 13's and am 20 years old. I started in a <small>amazing</small>
+        tutorial hell with the Unity game engine and C#, but soon stopped it by starting
+        programming games in pure Java and creating my own software rendering based
+        rasterization engines, even tough today i actually code more websites and
+        libraries than anything else, and because of my background in game development i enabled myself
+        to have more knowledge about user interaction based I/O operations and coding in general.
+      </p>
+    </article>
+    <article id="tech-article" x-show="selectedIndex === 2">
+      <h2>What is my current tech stack?</h2>
+      <p>
+        Actually... that is a little bit funny to talk about, since i am pretty agnostic
+        to it and can learn any language, framework, concept, etc... by
+        only being self-taught, what enables me to be a really efficient learner
+        and developer, but i still have some preferred technologies such as:
+      </p>
+      <div id="techs">
+        <section aria-labelledby="scala" class="tech-card">
+          <h3 id="scala">Scala</h3>
+          <span>
+            <img x-bind:width="logoSize"
+              src="https://images.seeklogo.com/logo-png/27/3/scala-logo-png_seeklogo-273882.png" alt="Scala logo">
+          </span>
+        </section>
+
+        <section aria-labelledby="tapir" class="tech-card">
+          <h3 id="tapir">Tapir</h3>
+          <span>
+            <div
+              style="border-radius: var(--radius); align-items: center; display: flex; justify-content: center;  clip-path: inset(0 0 0 0); width: 100%; height: 100%; overflow: hidden;">
+              <img x-bind:width="logoSize*2.25" src="https://adopt-tapir.softwaremill.com/tapir-splash-1136-640.jpg"
+                alt="Tapir scala library logo">
+            </div>
+          </span>
+        </section>
+
+        <section aria-labelledby="scalike-jdbc" class="tech-card">
+          <h3 id="scalike-jdbc">ScalikeJDBC</h3>
+          <span>
+            <img x-bind:width="logoSize" src="https://scalikejdbc.org/images/logo.png"
+              alt="ScalikeJDBC scala library logo">
+          </span>
+        </section>
+
+        <section aria-labelledby="sqlite" class="tech-card">
+          <h3 id="sqlite">SQLite</h3>
+          <span>
+            <img x-bind:width="logoSize"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SQLite370.svg/2560px-SQLite370.svg.png"
+              alt="SQLite logo">
+          </span>
+        </section>
+
+        <section aria-labelledby="alpine" class="tech-card">
+          <h3 id="alpine">Alpine.js</h3>
+          <span>
+            <img x-bind:width="logoSize"
+              src="https://sperovita.gallerycdn.vsassets.io/extensions/sperovita/alpinejs-syntax-highlight/1.0.1/1642647041367/Microsoft.VisualStudio.Services.Icons.Default"
+              alt="Alpine.js logo">
+          </span>
+        </section>
+        <section aria-labelledby="neovim" class="tech-card">
+          <h3 id="neovim">Neovim</h3>
+          <span>
+            <img x-bind:width="logoSize"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Neovim-mark.svg/1680px-Neovim-mark.svg.png"
+              alt="Neovim logo">
+          </span>
+        </section>
+    </article>
+    </div>
+  </main>
+</body>
+
+</html>
