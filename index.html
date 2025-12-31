@@ -1,21 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" x-data="
+    {
+      selectedIndex: 0,
+      alreadySelected: false,
+      items: [
+        {
+          title: 'Who i am',
+          content: `
+              Hello, my name is Miguel and i am a amateur web/game developer
+              that loves to create complex systems using
+              simple building blocks to leverage amazing performance
+              and good code quality.
+
+              I have a solid background in coding
+              and the good and old critical and creative thinking that everyone
+              loves to talk about.
+          `
+        },
+        {
+          title: 'History in coding',
+          content: `
+              I code since my 13's and am 20 years old. I started in a <small>amazing</small>
+              tutorial hell with the Unity game engine and C#, but soon stopped it by starting
+              programming games in pure Java and creating my own software rendering based
+              rasterization engines, even tough today i actually code more websites and
+              libraries than anything else, and because of my background in game development i enabled myself
+              to have more knowledge about user interaction based I/O operations and coding in general.
+          `
+        },
+        {
+          title: 'What is my current tech stack?',
+          content: `
+            Actually... that is a little bit funny to talk about, since i am pretty agnostic
+            to it and can learn any language, framework, concept, etc... by
+            only being self-taught, what enables me to be a really efficient learner
+            and developer, but i still have some preferred technologies such as:
+          `
+        }
+      ]
+    }
+  ">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Miguel Peixoto Portela Bispo's Portfolio</title>
-
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script defer src="src/main.js"></script>
-
   <link rel="stylesheet" type="text/css" href="src/styles.css">
 </head>
 
-<body x-data="{
-    selectedIndex: 0,
-    alreadySelected: false
-  }">
+<body>
   <header>
     <h1>Welcome!</h1>
     <ul>
@@ -26,48 +60,18 @@
     </ul>
   </header>
   <nav>
-    <button type="button" x-on:click="selectedIndex === 0?(alreadySelected = true):(selectedIndex = 0)" </button>
-      <button type="button" x-on:click="selectedIndex === 1?(alreadySelected = true):(selectedIndex = 1)"></button>
-      <button type="button" x-on:click="selectedIndex === 2?(alreadySelected = true):(selectedIndex = 2)"></button>
+    <button type="button" x-on:click="selectedIndex === 0?(alreadySelected = true):(selectedIndex = 0)">
+    </button>
+    <button type="button" x-on:click="selectedIndex === 1?(alreadySelected = true):(selectedIndex = 1)" </button>
+      <button type="button" x-on:click="selectedIndex === 2?(alreadySelected = true):(selectedIndex = 2)" </button>
   </nav>
   <main>
-    <article x-show="selectedIndex === 0" x-bind:class="alreadySelected&&'redundant'"
+    <article x-bind:class="alreadySelected&&'redundant'"
       x-on:animationend="alreadySelected = false">
-      <h2>Who i am</h2>
-      <p>
-        Hello, my name is Miguel and i am a amateur web/game developer
-        that loves to create complex systems using
-        simple building blocks to leverage amazing performance
-        and good code quality.
+      <h2 x-text="items[selectedIndex].title"></h2>
+      <p x-text="items[selectedIndex].content">
       </p>
-      <p>
-        I have a solid background in coding
-        and the good and old critical and creative thinking that everyone
-        loves to talk about.
-      </p>
-    </article>
-    <article x-show="selectedIndex === 1" x-bind:class="alreadySelected&&'redundant'"
-      x-on:animationend="alreadySelected = false">
-      <h2>History in coding</h2>
-      <p>
-        I code since my 13's and am 20 years old. I started in a <small>amazing</small>
-        tutorial hell with the Unity game engine and C#, but soon stopped it by starting
-        programming games in pure Java and creating my own software rendering based
-        rasterization engines, even tough today i actually code more websites and
-        libraries than anything else, and because of my background in game development i enabled myself
-        to have more knowledge about user interaction based I/O operations and coding in general.
-      </p>
-    </article>
-    <article id="tech-article" x-bind:class="alreadySelected&&'redundant'" x-show="selectedIndex === 2"
-      x-on:animationend="alreadySelected = false">
-      <h2>What is my current tech stack?</h2>
-      <p>
-        Actually... that is a little bit funny to talk about, since i am pretty agnostic
-        to it and can learn any language, framework, concept, etc... by
-        only being self-taught, what enables me to be a really efficient learner
-        and developer, but i still have some preferred technologies such as:
-      </p>
-      <div id="techs">
+      <div x-show="selectedIndex === 2" id="techs">
         <section aria-labelledby="scala" class="tech-card">
           <h3 id="scala">Scala</h3>
           <span>
@@ -114,8 +118,8 @@
               alt="Neovim logo">
           </span>
         </section>
+      </div>
     </article>
-    </div>
   </main>
 </body>
 
